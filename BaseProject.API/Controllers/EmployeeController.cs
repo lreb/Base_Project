@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Data.Common;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace BaseProject.API.Controllers
@@ -39,6 +40,68 @@ namespace BaseProject.API.Controllers
             var employees = await _dbContext.Employees.Include(a => a.Department).Where(a => a.Id == id).ToListAsync();
             return Ok(employees);
         }
+
+        [HttpPost, Route("NewEmployee")]
+        public async Task<IActionResult> AddNewEmployeeWithDepartmentAudit(EmployeeDto employeeDto) 
+        {
+            if (ModelState.IsValid)
+            {
+                //TODO: sue automapper to create new employee
+                Employee employee = new Employee() 
+                {
+                    Name = employeeDto.Name,
+                    Email = employeeDto.Email,
+                    DepartmentId = 1
+                };
+                _dbContext.Employees.Add(employee);
+                //TODO: extract user id: User?.FindFirst(ClaimTypes.NameIdentifier).Value
+                await _dbContext.SaveChangesAsync("lreb", default);
+                return Ok(employeeDto);
+            }
+            return BadRequest(employeeDto);
+        }
+
+        [HttpPost, Route("UpdateEmployee")]
+        public async Task<IActionResult> UpdateEmployeeWithDepartmentAudit(EmployeeDto employeeDto)
+        {
+            if (ModelState.IsValid)
+            {
+                //TODO: sue automapper to create new employee
+                Employee employee = new Employee()
+                {
+                    Id = 1,
+                    Name = employeeDto.Name,
+                    Email = employeeDto.Email,
+                    DepartmentId = 1
+                };
+                _dbContext.Employees.Update(employee);
+                //TODO: extract user id: User?.FindFirst(ClaimTypes.NameIdentifier).Value
+                await _dbContext.SaveChangesAsync("lreb", default);
+                return Ok(employeeDto);
+            }
+            return BadRequest(employeeDto);
+        }
+
+        [HttpPost, Route("DeleteEmployee")]
+        public async Task<IActionResult> DeleteEmployeeWithDepartmentAudit(EmployeeDto employeeDto)
+        {
+            if (ModelState.IsValid)
+            {
+                //TODO: sue automapper to create new employee
+                Employee employee = new Employee()
+                {
+                    Id = 4,
+                    Name = employeeDto.Name,
+                    Email = employeeDto.Email
+                };
+                _dbContext.Employees.Remove(employee);
+                //TODO: extract user id: User?.FindFirst(ClaimTypes.NameIdentifier).Value
+                await _dbContext.SaveChangesAsync("lreb", default);
+                return Ok(employeeDto);
+            }
+            return BadRequest(employeeDto);
+        }
+
 
         [HttpPost]
         public async Task<IActionResult> AddNewEmployeeWithDepartment(EmployeeDto employeeDto)

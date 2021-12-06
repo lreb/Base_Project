@@ -26,3 +26,5 @@ update-database
 
 ## references
 https://codewithmukesh.com/blog/using-entity-framework-core-and-dapper/
+https://github.com/aspnetcorehero/Boilerplate
+https://codewithmukesh.com/project/aspnet-core-hero-boilerplate/

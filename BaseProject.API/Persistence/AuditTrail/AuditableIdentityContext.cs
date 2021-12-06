@@ -1,30 +1,27 @@
-﻿using BaseProject.API.Domain;
-using BaseProject.API.Domain.Models.AuditTrail;
-using BaseProject.API.Interfaces;
+﻿using BaseProject.API.Domain.Models.AuditTrail;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Collections.Generic;
-using System.Data;
-using System.Threading;
 using System.Threading.Tasks;
 
-namespace BaseProject.API.Persistence
+namespace BaseProject.API.Persistence.AuditTrail
 {
-    public class ApplicationDbContext : DbContext, IApplicationDbContext
+    public abstract class AuditableIdentityContext : IdentityDbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        public AuditableIdentityContext(DbContextOptions options) : base(options)
         {
         }
-        public DbSet<Employee> Employees { get; set; }
-        public DbSet<Department> Departments { get; set; }
         public DbSet<Audit> AuditLogs { get; set; }
-        public IDbConnection Connection => Database.GetDbConnection();
-        public virtual async Task<int> SaveChangesAsync(string userId, CancellationToken cancellationToken)
+        public object Enums { get; private set; }
+
+        public virtual async Task<int> SaveChangesAsync(string userId = null)
         {
-            OnBeforeSaveChanges(userId, cancellationToken);
+            OnBeforeSaveChanges(userId);
             var result = await base.SaveChangesAsync();
             return result;
         }
-        private void OnBeforeSaveChanges(string userId, CancellationToken cancellationToken)
+        private void OnBeforeSaveChanges(string userId)
         {
             ChangeTracker.DetectChanges();
             var auditEntries = new List<AuditEntry>();
@@ -71,6 +68,5 @@ namespace BaseProject.API.Persistence
                 AuditLogs.Add(auditEntry.ToAudit());
             }
         }
-        
     }
 }
