@@ -36,6 +36,7 @@ namespace BaseProject.API
             services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
             services.AddScoped<IApplicationWriteDbConnection, ApplicationWriteDbConnection>();
             services.AddScoped<IApplicationReadDbConnection, ApplicationReadDbConnection>();
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
