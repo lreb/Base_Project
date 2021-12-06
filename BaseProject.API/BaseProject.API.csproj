@@ -23,7 +23,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Domain\Enum\" />
+    <Folder Include="Domain\ConfigurationHelpers\" />
+    <Folder Include="Infraestructure\Authentication\" />
+    <Folder Include="Infraestructure\HealthCheck\" />
     <Folder Include="Interfaces\AuditTrail\" />
+    <Folder Include="Persistence\FluentValidation\" />
+    <Folder Include="Persistence\Migrations\" />
+    <Folder Include="Service\" />
   </ItemGroup>
 
 </Project>
