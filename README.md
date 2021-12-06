@@ -28,3 +28,4 @@ update-database
 https://codewithmukesh.com/blog/using-entity-framework-core-and-dapper/
 https://github.com/aspnetcorehero/Boilerplate
 https://codewithmukesh.com/project/aspnet-core-hero-boilerplate/
+https://codewithmukesh.com/blog/audit-trail-implementation-in-aspnet-core/
