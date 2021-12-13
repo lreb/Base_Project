@@ -1,4 +1,4 @@
-﻿using BaseProject.API.Interfaces;
+﻿using BaseProject.API.Contract.DbContext;
 using BaseProject.API.Persistence;
 using Microsoft.Extensions.DependencyInjection;
 

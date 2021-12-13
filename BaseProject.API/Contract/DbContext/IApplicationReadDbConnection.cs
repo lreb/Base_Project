@@ -3,7 +3,7 @@ using System.Data;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace BaseProject.API.Interfaces
+namespace BaseProject.API.Contract.DbContext
 {
     public interface IApplicationReadDbConnection
     {

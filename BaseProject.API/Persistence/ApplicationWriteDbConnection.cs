@@ -1,4 +1,4 @@
-﻿using BaseProject.API.Interfaces;
+﻿using BaseProject.API.Contract.DbContext;
 using Dapper;
 using System.Collections.Generic;
 using System.Data;

@@ -1,13 +1,11 @@
-﻿using BaseProject.API.Domain;
+﻿using BaseProject.API.Contract.DbContext;
+using BaseProject.API.Domain;
 using BaseProject.API.Domain.DTO;
-using BaseProject.API.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Data.Common;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace BaseProject.API.Controllers

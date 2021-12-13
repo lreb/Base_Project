@@ -1,4 +1,4 @@
-﻿using BaseProject.API.Interfaces;
+﻿using BaseProject.API.Contract.DbContext;
 using Dapper;
 using Microsoft.Extensions.Configuration;
 using System;

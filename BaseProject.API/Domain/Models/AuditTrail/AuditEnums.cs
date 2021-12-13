@@ -1,8 +1,8 @@
 ﻿namespace BaseProject.API.Domain.Models.AuditTrail
 {
-    //public class AuditEnums
-    //{
-    //}
+    /// <summary>
+    /// Audit types
+    /// </summary>
     public enum AuditType
     {
         None = 0,
