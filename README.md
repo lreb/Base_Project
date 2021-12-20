@@ -23,6 +23,11 @@ update-database
 }
 
 
+## Automapper
+
+## Mediatr
+
+## a
 
 ## references
 https://codewithmukesh.com/blog/using-entity-framework-core-and-dapper/

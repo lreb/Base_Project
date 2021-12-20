@@ -27,8 +27,22 @@ namespace BaseProject.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            #region MediatR
+            // Register MediatR services
+            //services.AddMediatR(typeof(Startup));
+
+            // Way-2
             services.AddMediatR(Assembly.GetExecutingAssembly());
-            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+            // Register MediatR services from multiple assembly.
+            //services.AddMediatR(Assembly.GetExecutingAssembly(), typeof(ICustomerService).Assembly);
+
+            #endregion
+
+            #region Automapper
+            //services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            #endregion
 
             #region Swagger service
             // enable swagger service
@@ -58,6 +72,16 @@ namespace BaseProject.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BaseProject.API", Version = "v1" });
             });
+
+
+            //// gather some context stuff
+            //var context = this.Request.GetContext();
+
+            //// gather the user manager
+            //var usermanager = context.Get<ApplicationUserManager>();
+
+            //// add a country claim (given you have the userId)
+            //usermanager.AddClaim("userid", new Claim(ClaimTypes.Country, "Germany"));
 
             
         }
